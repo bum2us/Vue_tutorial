@@ -1,0 +1,36 @@
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>좋아요</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div v-if="route==='main'">메인화면</div>
+        <div v-else-if="route==='sub'">서브화면</div>
+        <button v-on:click="route ==='main' ? onClickButton : onClickButton2">Like</button>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#root',
+        data: {
+            liked: false,
+            route: 'main',
+        },
+        methods: {
+            onClickButton() {
+                route = 'sub';
+            },
+            onClickButton() {
+                route = 'main';
+            },
+        },
+    });
+</script>
+
+</html>

@@ -1,0 +1,58 @@
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<body>
+    <div id="root">
+        <word-Relay start-Word="신범수"></word-Relay>
+        <word-Relay start-Word="엔에이치엔"></word-Relay>
+        <word-Relay start-Word="다이퀘스트"></word-Relay>
+    </div>
+    <script>
+        Vue.component('wordRelay', {
+            template: `
+            <div>
+                <div>{{first}}</div>
+                <form v-on:submit="onClicksubmit">
+                    <input type="text" v-model="second">
+                    <button type="submit">입력</button>
+                </form>
+                <div>{{result}}</div>
+            </div>
+            `,
+            props: ['startWord'],
+            data() {
+                return {
+                    first: this.startWord,
+                    second: '',
+                    result: '',
+                };
+            },
+            methods: {
+                onClicksubmit(e) {
+                    e.preventDefault();
+                    if (this.first[this.first.length - 1] === this.second[0]) {
+                        this.first = this.second;
+                        this.result = '정답입니다';
+                    } else {
+                        this.result = '틀렸습니다';
+                    }
+                    this.second = '';
+                },
+            },
+        });
+    </script>
+    <script>
+        const app = new Vue({
+            el: '#root',
+        });
+    </script>
+</body>
+
+</html>
